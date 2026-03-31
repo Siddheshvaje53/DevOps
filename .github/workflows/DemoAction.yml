@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: checkout to main branch
+      uses: actions/checkout@v6
+
+    - name: runs single command
+      run: echo Hello, World!
+
+    - name: runs multi-command
+      run: |
+        echo First
+        echo Second
+        echo Third
+
+      
