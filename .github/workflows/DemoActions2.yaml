@@ -1,0 +1,44 @@
+name: For build, test and deploy
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+    
+      - name: run single command
+        run: echo single command.
+        
+      - name: run multiple commands
+        run: |
+          echo first command
+          echo second command
+          echo third command
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: run command in test phase
+        run: echo inside testing phase
+
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: run command in deploy phase
+        run: echo inside deploy phase
+
+      - name: complete run
+        run: echo pipeline execution is completed!
