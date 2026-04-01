@@ -1,0 +1,33 @@
+name: For Multiple jobs
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      
+      - name: run single command
+        run: echo Hello, World!
+
+      - name: run multiple commands
+        run: |
+          echo First
+          echo Second
+          echo Third
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: run after build
+      run: echo Test is running...
+          
