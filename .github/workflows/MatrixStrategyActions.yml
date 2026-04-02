@@ -1,0 +1,25 @@
+name: For Matrix Strategy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14, 16, 18]     # This creates 9 jobs (3 OS × 3 Node versions)
+
+    steps:
+      - uses: actions/checkout@v6
+      
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm test
+        
